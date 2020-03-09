@@ -64,6 +64,7 @@ void createField(int numberOfSets)
 {
   partitionCards(numberOfSets);
   //make an array of cards, for-loop with x(i) and y(j):
+  println("numberOfCards: X = " + numberOfCardsX + " Y = " + numberOfCardsY);
   makeArrayOfCards(numberOfCardsX, numberOfCardsY);
 }
 
@@ -80,21 +81,25 @@ void partitionCards(int numberOfSets)
     {
       numberOfCardsX = 8;
       numberOfCardsY = 3;
+      return;
     }
   case 18:
     {
       numberOfCardsX = 8;
       numberOfCardsY = 3;
+      return;
     }
   case 24:
     {
       numberOfCardsX = 8;
       numberOfCardsY = 6;
+      return;
     }
   case 32:
     {
       numberOfCardsX = 8;
       numberOfCardsY = 8;
+      return;
     }
   }
 }

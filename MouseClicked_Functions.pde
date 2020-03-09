@@ -32,13 +32,13 @@ void doActionArray(String buttonId, int index) {
   if (buttonId=="setGame")
   {
     numberOfSets = sets[index];
-    println("doActionArray : NumberOfSets = " + sets[index]);
+    //println("doActionArray : NumberOfSets = " + sets[index]);
   }
 }
 void doAction(String buttonId)
 {
   if (buttonId == "setupGame")
   {
-    println("doAction: ButtonId setupGame");
+    //println("doAction: ButtonId setupGame");
   }
 }

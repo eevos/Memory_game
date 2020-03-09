@@ -16,15 +16,16 @@ void draw()
 
   if (!gameStarted && !gameWon && !gamePaused && !setupComplete)  // If all gamestatuses are false: begin with setup
   {
-    println("setup running");
+    //println("setup running");
     drawSetup();
   }
 
   if (!gameStarted && !gameWon && !gamePaused && setupComplete)  // If the setup is completed, we can create the field
   {
     println("setup completed, going to create field");
-    //if (cards = null) {
-    //println("createField is running");
+    //if (cards == null) {
+    println("createField is running");
+    createField(numberOfSets);
     //cards = createField(numberOfSets);
     //} 
     //else 
@@ -53,7 +54,7 @@ void mouseClicked()
 
   if (!gameStarted && !gameWon && !gamePaused && !setupComplete)  // setup is running
   {
-    if (isButtonClicked(xPositionStartButton, yPositionStartButton, widthStartButton, heightStartButton))
+    if (isButtonClicked(xPositionStartButton, yPositionStartButton, widthStartButton, heightStartButton) && (numberOfSets > 0))
     {
       //println("startButton is clicked, setupComplete = true"); 
       setupComplete = true;
