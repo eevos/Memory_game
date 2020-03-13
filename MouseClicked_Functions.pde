@@ -42,3 +42,19 @@ void doAction(String buttonId)
     //println("doAction: ButtonId setupGame");
   }
 }
+
+Card identifyCard()
+{                                          //println("identifyCard() is running");
+  Card thisCardIsClicked=null;
+  for (int x = 0; x<numberOfCardsX; x++)
+  {
+    for (int y = 0; y<numberOfCardsY; y++)
+    {                                      //println("for-loop is running");  //println(cards[x][y].getX() + cards[x][y].getY());
+      if (isMouseOverButton(cards[x][y].getX(), cards[x][y].getY(), 100, 100))
+      {
+        thisCardIsClicked = cards[x][y];   //println("this card is clicked: Card[" + x + "][" + y + "]");
+      }
+    }
+  }
+  return thisCardIsClicked;
+}

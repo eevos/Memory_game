@@ -55,52 +55,8 @@ void drawButton(String text, int x, int y, int w, int h, String buttonId )
   changeButtonColorIfMouseOver(x, y, w, h);
   rect(x, y, w, h);
   drawText(text, x + w/4, y);
-  if (isMouseOverButton(x, y, w, h)){
+  if (isMouseOverButton(x, y, w, h)) {
     doAction(buttonId);
-  }
-}
-
-void createField(int numberOfSets)
-{
-  partitionCards(numberOfSets);
-  //make an array of cards, for-loop with x(i) and y(j):
-  println("numberOfCards: X = " + numberOfCardsX + " Y = " + numberOfCardsY);
-  makeArrayOfCards(numberOfCardsX, numberOfCardsY);
-}
-
-void makeArrayOfCards(int numberOfCardsX, int numberOfCardsY)
-{
-  //write a for-loop to fill an array[][] with Card-objects  
-}
-
-
-void partitionCards(int numberOfSets)
-{ 
-  switch (numberOfSets) {
-  case 12:
-    {
-      numberOfCardsX = 8;
-      numberOfCardsY = 3;
-      return;
-    }
-  case 18:
-    {
-      numberOfCardsX = 8;
-      numberOfCardsY = 3;
-      return;
-    }
-  case 24:
-    {
-      numberOfCardsX = 8;
-      numberOfCardsY = 6;
-      return;
-    }
-  case 32:
-    {
-      numberOfCardsX = 8;
-      numberOfCardsY = 8;
-      return;
-    }
   }
 }
 
