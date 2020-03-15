@@ -1,3 +1,16 @@
+void drawSidebar()
+{
+  fill(150);  
+  rect(fieldWidth, 0, sidebarWidth, sidebarHeight);    //draw to test field with dimensions of sideBar
+
+  String[] text = {"Player Turn: " + str(playerTurn), "Score player 1 : "  + str(player1Points), "Score player 2 : " + str(player2Points), 
+    "Extra info", "cardId: "+clickedCard};
+  for (int i = 0; i < text.length; i++)
+  {
+    drawText(text[i], fieldWidth, i*30);
+  }
+}
+
 Card[][] createField(int numberOfSets)
 {
   partitionCardsXandY(numberOfSets);
@@ -8,6 +21,11 @@ Card[][] createField(int numberOfSets)
 void partitionCardsXandY(int numberOfSets)
 { 
   switch (numberOfSets) {
+  case 2:
+    {
+      numberOfCardsX = 2;      
+      numberOfCardsY = 1;
+    }
   case 12:
     {
       numberOfCardsX = 8;      
@@ -49,7 +67,7 @@ Card[][] makeArrayOfCards(int numberOfCardsX, int numberOfCardsY)
       PImage img;
       img = loadImage(+imagenumber+".png");
       int imageNo=imagenumber;
-      
+
       arrayOfCards[x][y] = new Card(id, x*cardWidth, y*cardHeight, cardWidth, cardHeight, img, imageNo);  //println("x = "+ x + " and y = " + y);  //println("imagenumber = " + imagenumber + " id = " + id
 
       //increase id for every Card, but only increase imagenumber when the same image is also set for the second Card
@@ -88,30 +106,23 @@ void drawField()
     for (int y = 0; y < numberOfCardsY; y++)
     {
       Card thisCard = cards[x][y];
-      
+
       img = thisCard.getImage();
-      if (thisCard.getVisibility())              //To see field drawn with images visible, toggle:   !cards[x][y].getVisibility()
+      if (thisCard.getVisibility() && !thisCard.getDiscovered())              //To see field drawn with images visible, toggle:   !cards[x][y].getVisibility()
       {
+// Issue: card2 doesn't get to this point.
         image(img, thisCard.getX(), thisCard.getY());
-      } else
+        //println("cards[" + x + "][ " + y + "].getVisibility() = " + cards[x][y].getVisibility());
+      } 
+      if (!thisCard.getVisibility() && thisCard.getDiscovered())
+      {
+        //draw nothing if card is discovered
+      }
+      if (!thisCard.getVisibility() && !thisCard.getDiscovered())
       {
         fill(100);
         rect(thisCard.getX(), thisCard.getY(), cardWidth, cardHeight);
-        drawText("    ?",thisCard.getX(), thisCard.getY());
       }
-      //println("cards[" + x + "][ " + y + "].getId() = " + cards[x][y].getId());
     }
-  }
-}
-
-void drawSidebar()
-{
-  fill(150);  
-  rect(fieldWidth, 0, sidebarWidth, sidebarHeight);    //draw to test field with dimensions of sideBar
-  String[] text = {"Beurt speler x", "Score speler 1 : ", str(player1Points), "Score speler 2", str(player2Points), 
-                  "Extra info", "Extra info", "sidebarWidth: " + sidebarWidth, "cardId: "+clickedCard};
-  for (int i = 0; i < text.length; i++)
-  {
-    drawText(text[i], fieldWidth, i*30);
   }
 }

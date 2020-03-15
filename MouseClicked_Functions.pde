@@ -43,9 +43,10 @@ void doAction(String buttonId)
   }
 }
 
+  Card thisCardIsClicked;
+
 Card identifyCard()
 {                                          //println("identifyCard() is running");
-  Card thisCardIsClicked=null;
   for (int x = 0; x<numberOfCardsX; x++)
   {
     for (int y = 0; y<numberOfCardsY; y++)
@@ -54,7 +55,28 @@ Card identifyCard()
       {
         thisCardIsClicked = cards[x][y];   //println("this card is clicked: Card[" + x + "][" + y + "]");
       }
+      else
+      {
+        println("no card clicked");          // Issue
+      }
     }
   }
   return thisCardIsClicked;
+}
+
+//Test
+Card foundCard;
+Card findCardById(int id)
+{
+  for (int x = 0; x<numberOfCardsX; x++)
+  {
+    for (int y = 0; y<numberOfCardsY; y++)
+    {
+      if (cards[x][y].getId() == id)
+      {
+        foundCard= cards[x][y];
+      }
+    }
+  }
+  return foundCard;
 }

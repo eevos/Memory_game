@@ -1,3 +1,11 @@
+void initializeSidebarFieldDimensions()
+{
+  sidebarWidth = 500;
+  sidebarHeight = height;
+  fieldWidth = width - sidebarWidth;
+  fieldHeight = height;
+}
+
 void createBackground()
 {
   clear();
@@ -67,10 +75,34 @@ int calculateXposButtons(int x, int numberOfButtons, int w, int index)
   return xPosButton;
 }
 
-void playGame()
-{
-}
-
 void endGame()
 {
+  createBackground();
+  String winner=  determineWinner();
+  String[] text = {"Player " + winner + " has won in " + str(playerTurn) + " turns!", 
+    "Score player 1 : "  + str(player1Points), "Score player 2 : " + str(player2Points), 
+    "Click mouse to restart game", "Extra info"};
+
+  for (int i = 0; i < text.length; i++)
+  {
+    drawText(text[i], 500, 200 + i * 30);
+  }
+}
+
+String determineWinner()
+{
+  String winner;
+  if (player1Points>player2Points)
+  {
+    winner = "Player 1";
+    return winner;
+  } else if (player1Points<player2Points)
+  {
+    winner = "Player 2";
+    return winner;
+  } else
+  {
+    winner = "1 and 2 ";
+    return winner;
+  }
 }

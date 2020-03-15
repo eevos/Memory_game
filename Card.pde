@@ -4,7 +4,8 @@ class Card {
   int x, y;
   int w, h;
   PImage image;
-  boolean visibility, discovered;
+  boolean visibility = false; 
+  boolean discovered = false;
   int imageNo;
 
   Card (int tempId, int tempX, int tempY, int tempW, int tempH, PImage tempImage, int tempImageNo) {

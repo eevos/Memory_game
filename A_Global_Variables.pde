@@ -3,9 +3,9 @@ boolean gameStarted, gameWon, gamePaused, setupComplete;
 
 // Player information
 String player1Name, player2Name;
-String playerTurn;
+int playerTurn = 1;
 int player1Points, player2Points;
-int player1Discovered, player2Discovered;
+//int player1Discovered, player2Discovered;
 int player1Turns, player2Turns;          // maybe not necessary
 
 // Pictures: do we need an array of PImages  ?    //PImage[] images;
@@ -17,12 +17,20 @@ int[] sets = {12, 24, 32};      //int[] sets = {12, 18, 24, 32};  //(add 18 to t
 int numberOfCardsX, numberOfCardsY;
 int numberOfSets = 0;
 
+//variables to use in mouseClick() when playGame()
+Card clickedCard;
+Card clickedCard1;
+Card clickedCard2;
+boolean card1;
+boolean card2;
+
 // Dimensions of cards: we need the Cards to have a fixed dimension because of the size of the pictures
-int cardWidth, cardHeight;      //100px
+int cardWidth = 100;
+int cardHeight = cardWidth;      //100px
 
 // Dimensions of field:  we need this to draw the playing field where the Cards are put
 int fieldWidth, fieldHeight;
-int spaceBetween;
+int spaceBetween = 30;
 int borderX, borderY;
 
 // Dimensions of Sidebar:  
