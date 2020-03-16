@@ -49,6 +49,7 @@ class Card {
   }
 
   //Set information that is changeable
+ 
   void setVisibility(boolean tempVisibility) { 
     visibility = tempVisibility;
   }    //setVisible is a reserved function, so changed to setVisibility

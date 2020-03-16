@@ -82,10 +82,36 @@ void endGame()
   String[] text = {"Player " + winner + " has won in " + str(playerTurn) + " turns!", 
     "Score player 1 : "  + str(player1Points), "Score player 2 : " + str(player2Points), 
     "Click mouse to restart game", "Extra info"};
-
   for (int i = 0; i < text.length; i++)
   {
     drawText(text[i], 500, 200 + i * 30);
+  }
+}
+
+void resetParametresToRestartGame()
+{
+  setupComplete = false;
+  gameStarted = false;
+  gameWon = false;
+  gamePaused = false;
+  
+  clickedCard1 = null;
+  clickedCard2 = null;
+  clickedCard = null;
+  numberOfCardsX = 0;
+  numberOfCardsY = 0;
+  playerTurn = 1;
+  player1Points = 0;
+  player2Points = 0;
+  numberOfSets = 0;
+  clickCount=0;
+
+  for (int x=0; x<numberOfCardsX; x++)
+  {
+    for (int y = 0; y < numberOfCardsY; y++)
+    {
+      cards[x][y]=null;
+    }
   }
 }
 

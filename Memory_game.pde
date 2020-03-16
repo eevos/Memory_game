@@ -1,21 +1,17 @@
-
 void setup()
 {
   fullScreen();  
   initializeSidebarFieldDimensions(); 
-  resetGameParametres();          // The game will be (re)started with gamestatus-variables set on false
-  card1 = false;
-  card2 = false;
+  resetParametresToRestartGame();          // The game will be (re)started with gamestatus-variables set on false
 }
 
 void draw()
 {
-  createBackground();                                              
+  createBackground();
   if (!gameStarted && !gameWon && !gamePaused && !setupComplete)  // If all gamestatuses are false: begin with setup
   {
     drawSetup();    //println("setup running");
   }
-
   if (!gameStarted && !gameWon && !gamePaused && setupComplete)  // If the setup is completed, we can create the field
   {
     if (cards == null) 
@@ -29,24 +25,31 @@ void draw()
       gameWon = false;
       gamePaused = false;
     }
-  }
-
-  if (gameStarted && !gameWon && !gamePaused && setupComplete)  // If setup & field are completed, we can draw and play the game
+  }  
+  if (pauseCounterStarted)
   {
-    //the game is drawn:
+    pauseCounter++;
+    if (pauseCounter >= 100)
+    {
+      pauseCounterStarted = false;
+      pauseCounter = 0;
+    }
+  }
+  if (gameStarted && !gameWon && setupComplete)  // If setup & field are completed, we can draw and play the game
+  {
     drawField();
+    checkCardVisibility();
     drawSidebar();
   }
-
   if (gameStarted && gameWon && !gamePaused && setupComplete)  // If the game is won, we can end the game
   {
+    println("Endgame");
     endGame();      //draw a message : "player x has won! click mouse to restart game"
   }
 }
 
 void mouseClicked()
 {
-
   if (!gameStarted && !gameWon && !gamePaused && !setupComplete)  // setup is running
   {
     if (isButtonClicked(xPositionStartButton, yPositionStartButton, widthStartButton, heightStartButton) && (numberOfSets > 0))
@@ -57,16 +60,19 @@ void mouseClicked()
       gamePaused = false;
     }
   }
-  if (!gameStarted && !gameWon && !gamePaused && setupComplete)  // no input needed; game is being constructed
-  {
-  }
-  if (gameStarted && !gameWon && !gamePaused && setupComplete)      // game is being played
+  if (gameStarted && !gameWon && setupComplete)      // game is being played
   {
     clickedCard = identifyCard();      //println(clickedCard.getId());    //println(clickedCard.getImageNo());
     playGame(clickedCard);
+    gamePaused = true;    //Issue : second card is not drawn. Draw() and Mouseclick() --> pauseGame
   }
   if (gameStarted && gameWon && !gamePaused && setupComplete)  // resetting the game on a mouseclick
   {    
-    resetGameParametres();
+    //endGame() is being drawn in draw()
+    resetParametresToRestartGame();
+    println("resetParametres");
+  }
+  if (!gameStarted && !gameWon && !gamePaused && setupComplete)  // no input needed; game is being constructed
+  {
   }
 }

@@ -21,10 +21,11 @@ Card[][] createField(int numberOfSets)
 void partitionCardsXandY(int numberOfSets)
 { 
   switch (numberOfSets) {
-  case 2:
+  case 1:
     {
       numberOfCardsX = 2;      
       numberOfCardsY = 1;
+      return;
     }
   case 12:
     {
@@ -97,6 +98,26 @@ void centerCardsInField()
     }
   }
 }
+void checkCardVisibility()
+{
+  if ((pauseCounterStarted == false) && clickedCard1!=null && clickedCard2!=null)
+  {
+    if (equalCards(clickedCard1, clickedCard2))
+    { 
+      //cards[0][0].setVisibility(true);
+      winTurn();        //naar mouseclicked
+      clickedCard1.setDiscovered(true);  
+      clickedCard2.setDiscovered(true);
+    } else if (!equalCards(clickedCard1, clickedCard2))
+    {
+      loseTurn();
+    }
+    clickedCard1.setVisibility(false); 
+    clickedCard2.setVisibility(false);
+    clickedCard1 = null;
+    clickedCard2 = null;
+  }
+}
 
 void drawField()
 {
@@ -108,16 +129,21 @@ void drawField()
       Card thisCard = cards[x][y];
 
       img = thisCard.getImage();
-      if (thisCard.getVisibility() && !thisCard.getDiscovered())              //To see field drawn with images visible, toggle:   !cards[x][y].getVisibility()
+
+      if (thisCard.getVisibility() == true)              //To see field drawn with images visible, toggle:   !cards[x][y].getVisibility()
       {
-// Issue: card2 doesn't get to this point.
+        // Issue: clickedCard2 doesn't get to this point.
         image(img, thisCard.getX(), thisCard.getY());
         //println("cards[" + x + "][ " + y + "].getVisibility() = " + cards[x][y].getVisibility());
+        //println("cards[" + x + "][ " + y + "].getDiscovered() = " + cards[x][y].getDiscovered());
       } 
-      if (!thisCard.getVisibility() && thisCard.getDiscovered())
-      {
-        //draw nothing if card is discovered
-      }
+      //if (thisCard.getDiscovered() == true)
+      //{
+      //image(img, thisCard.getX(), thisCard.getY());
+
+      //println("cards[" + x + "][ " + y + "].getVisibility() = " + cards[x][y].getVisibility());
+      //println("cards[" + x + "][ " + y + "].getDiscovered() = " + cards[x][y].getDiscovered());
+      //}
       if (!thisCard.getVisibility() && !thisCard.getDiscovered())
       {
         fill(100);

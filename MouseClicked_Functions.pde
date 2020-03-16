@@ -55,9 +55,9 @@ Card identifyCard()
       {
         thisCardIsClicked = cards[x][y];   //println("this card is clicked: Card[" + x + "][" + y + "]");
       }
-      else
+      if (!isMouseOverButton(cards[x][y].getX(), cards[x][y].getY(), 100, 100))
       {
-        println("no card clicked");          // Issue
+        //println("no card clicked");          // Issue
       }
     }
   }

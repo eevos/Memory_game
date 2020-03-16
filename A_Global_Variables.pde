@@ -1,18 +1,18 @@
 // Gamestatus: these are variables to direct the game
 boolean gameStarted, gameWon, gamePaused, setupComplete;  
 
+int pauseCounter = 0;
+boolean pauseCounterStarted = false;
+
 // Player information
 String player1Name, player2Name;
 int playerTurn = 1;
-int player1Points, player2Points;
-//int player1Discovered, player2Discovered;
-int player1Turns, player2Turns;          // maybe not necessary
-
-// Pictures: do we need an array of PImages  ?    //PImage[] images;
+int player1Points = 0;
+int player2Points = 0;
 
 // Cards:  these variables are needed to create the Cards for the game
 Card[][] cards;
-int[] sets = {12, 24, 32};      //int[] sets = {12, 18, 24, 32};  //(add 18 to test expanding the game)    
+int[] sets = {1, 12, 24, 32};      //int[] sets = {12, 18, 24, 32};  //(add 18 to test expanding the game)    
 
 int numberOfCardsX, numberOfCardsY;
 int numberOfSets = 0;
@@ -21,8 +21,9 @@ int numberOfSets = 0;
 Card clickedCard;
 Card clickedCard1;
 Card clickedCard2;
-boolean card1;
-boolean card2;
+boolean card1 = false;
+boolean card2 = false;
+int clickCount=0;
 
 // Dimensions of cards: we need the Cards to have a fixed dimension because of the size of the pictures
 int cardWidth = 100;
