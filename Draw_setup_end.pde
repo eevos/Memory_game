@@ -1,6 +1,6 @@
 void initializeSidebarFieldDimensions()
 {
-  sidebarWidth = 500;
+  sidebarWidth = width/4;
   sidebarHeight = height;
   fieldWidth = width - sidebarWidth;
   fieldHeight = height;
@@ -75,43 +75,20 @@ int calculateXposButtons(int x, int numberOfButtons, int w, int index)
   return xPosButton;
 }
 
-void endGame()
+void drawEndGame()
 {
   createBackground();
   String winner=  determineWinner();
-  String[] text = {"Player " + winner + " has won in " + str(playerTurn) + " turns!", 
-    "Score player 1 : "  + str(player1Points), "Score player 2 : " + str(player2Points), 
-    "Click mouse to restart game", "Extra info"};
+  int playerTurns = determineWinnerTurns(winner);//determineWinnerTurns(winner); 
+  
+  String[] text = {"Player " + winner + " has won in " + str(playerTurns) + " turns!", 
+    "Score player 1 : "  + str(player1Points), 
+    "Score player 2 : " + str(player2Points), 
+    "Click mouse to restart game", 
+    "Extra info"};
   for (int i = 0; i < text.length; i++)
   {
     drawText(text[i], 500, 200 + i * 30);
-  }
-}
-
-void resetParametresToRestartGame()
-{
-  setupComplete = false;
-  gameStarted = false;
-  gameWon = false;
-  gamePaused = false;
-  
-  clickedCard1 = null;
-  clickedCard2 = null;
-  clickedCard = null;
-  numberOfCardsX = 0;
-  numberOfCardsY = 0;
-  playerTurn = 1;
-  player1Points = 0;
-  player2Points = 0;
-  numberOfSets = 0;
-  clickCount=0;
-
-  for (int x=0; x<numberOfCardsX; x++)
-  {
-    for (int y = 0; y < numberOfCardsY; y++)
-    {
-      cards[x][y]=null;
-    }
   }
 }
 
@@ -131,4 +108,46 @@ String determineWinner()
     winner = "1 and 2 ";
     return winner;
   }
+}
+
+int determineWinnerTurns(String winner)
+  {
+    int tempPlayerTurns;
+    println(winner);
+    if (winner == "Player 1" )
+    {
+      tempPlayerTurns = player1Turns;
+    } else 
+    {
+      tempPlayerTurns = player2Turns;
+    }
+    return tempPlayerTurns;
+  }
+
+void resetParametresToRestartGame()
+{
+  setupComplete = false;
+  gameStarted = false;
+  gameWon = false;
+  gamePaused = false;
+  pauseCounter = 0;
+
+  clickedCard1 = null;
+  clickedCard2 = null;
+  clickedCard = null;
+  numberOfCardsX = 0;
+  numberOfCardsY = 0;
+  playerTurn = 1;
+  player1Points = 0;
+  player2Points = 0;
+  numberOfSets = 0;
+  clickCount=0;
+
+  //for (int x=0; x<numberOfCardsX; x++)
+  //{
+  //  for (int y = 0; y < numberOfCardsY; y++)
+  //  {
+  //    cards[x][y]=null;
+  //  }
+  //}
 }

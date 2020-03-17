@@ -5,33 +5,32 @@ void playGame(Card clickedCard) //<>//
     clickedCard1 = clickedCard;
     clickedCard1.setVisibility(true);
     clickCount++;
-    card1 = true;
   } else          
   {
     clickedCard2 = clickedCard;   
     clickedCard2.setVisibility(true);
     clickCount--;
-    pauseCounterStarted = true;
+    gamePaused = true;
   }
-  if (checkIfGameWon())
-  {
-    println("game has been won");
-    //reset variables to go to endGame()
-    setupComplete = true;    
-    gameStarted = true;
-    gameWon = true;
-    gamePaused = false;
-  }
+//checkIfGameWon();
+  //if (checkIfGameWon())
+  //{
+  //  println("game has been won");
+  //  //reset variables to go to endGame()
+  //  setupComplete = true;    
+  //  gameStarted = true;
+  //  gameWon = true;
+  //}
 } 
-
-void pauseGame(int tempDuration)
+void pauseGame(int seconds)
 {
-  int startMillis = millis();
-  while (millis() < startMillis + tempDuration)
+  int frames = 50 * seconds;
+  pauseCounter++;
+  if (pauseCounter >= frames)
   {
-    //do nothing for tempDuration
+    gamePaused = false;
+    pauseCounter = 0;
   }
-  gamePaused = false;
 }
 
 boolean equalCards(Card clickedCard1, Card clickedCard2)
@@ -49,8 +48,10 @@ void winTurn()
 {
   if (playerTurn == 1) { 
     player1Points++;
+    player1Turns++;
   } else if (playerTurn == 2) {
     player2Points++;
+    player2Turns++;
   }
 }
 
@@ -59,15 +60,27 @@ void loseTurn()
   //switch turn      //println("cards are NOT the same, switch turn. clickedCard2.setVisibility: " + clickedCard2.getVisibility());  
   if (playerTurn == 1) {
     playerTurn++;
+    player1Turns++;
   } else if (playerTurn == 2) {
     playerTurn--;
+    player2Turns++;
   }
 }
 
+void checkIfGameWon()
+{
+    int totalPoints = (player1Points + player2Points); 
+     if (((player1Points + player2Points)*2 >= numberOfCardsX*numberOfCardsY))  {
+    println("from checkIfGameWon(): game has been won ");
+    setupComplete = true;    
+    gameStarted = true;
+    gameWon = true;      
+  }
+}
 void resetCards(String winOrLose)
 {
   if (winOrLose=="Lose")
-  {
+  {  // do nothing special
   } else if (winOrLose=="Win")
   {    
     clickedCard1.setDiscovered(true);  
@@ -80,11 +93,13 @@ void resetCards(String winOrLose)
   clickedCard=null;
 }
 
-boolean checkIfGameWon()
+//pauseGame with milliseconds
+void pauseGameMillis(int tempDuration)
 {
-  if ( player1Points+player2Points == numberOfCardsX*numberOfCardsY)
+  int startMillis = millis();
+  while (millis() < startMillis + tempDuration)
   {
-    return true;
+    //do nothing for tempDuration
   }
-  return false;
+  gamePaused = false;
 }

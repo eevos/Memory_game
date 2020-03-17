@@ -3,8 +3,13 @@ void drawSidebar()
   fill(150);  
   rect(fieldWidth, 0, sidebarWidth, sidebarHeight);    //draw to test field with dimensions of sideBar
 
-  String[] text = {"Player Turn: " + str(playerTurn), "Score player 1 : "  + str(player1Points), "Score player 2 : " + str(player2Points), 
-    "Extra info", "cardId: "+clickedCard};
+  String[] text = {"Player Turn: " + str(playerTurn), 
+    "Score player 1 : "  + str(player1Points), 
+    "Player 1 turns: "  + player1Turns,
+    "Score player 2 : " + str(player2Points),
+    "Player 2 turns: "  + player2Turns,
+    "Game Paused : " + str(gamePaused), 
+    "Game Won: "+ str(gameWon)};                        //, "cardId: "+clickedCard};
   for (int i = 0; i < text.length; i++)
   {
     drawText(text[i], fieldWidth, i*30);
@@ -98,14 +103,14 @@ void centerCardsInField()
     }
   }
 }
-void checkCardVisibility()
+
+void checkTurn()
 {
-  if ((pauseCounterStarted == false) && clickedCard1!=null && clickedCard2!=null)
+  if (gamePaused == false && clickedCard1!=null && clickedCard2!=null)
   {
     if (equalCards(clickedCard1, clickedCard2))
     { 
-      //cards[0][0].setVisibility(true);
-      winTurn();        //naar mouseclicked
+      winTurn();
       clickedCard1.setDiscovered(true);  
       clickedCard2.setDiscovered(true);
     } else if (!equalCards(clickedCard1, clickedCard2))
@@ -127,9 +132,7 @@ void drawField()
     for (int y = 0; y < numberOfCardsY; y++)
     {
       Card thisCard = cards[x][y];
-
       img = thisCard.getImage();
-
       if (thisCard.getVisibility() == true)              //To see field drawn with images visible, toggle:   !cards[x][y].getVisibility()
       {
         // Issue: clickedCard2 doesn't get to this point.
@@ -140,7 +143,6 @@ void drawField()
       //if (thisCard.getDiscovered() == true)
       //{
       //image(img, thisCard.getX(), thisCard.getY());
-
       //println("cards[" + x + "][ " + y + "].getVisibility() = " + cards[x][y].getVisibility());
       //println("cards[" + x + "][ " + y + "].getDiscovered() = " + cards[x][y].getDiscovered());
       //}

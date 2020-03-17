@@ -1,12 +1,15 @@
 // Gamestatus: these are variables to direct the game
-boolean gameStarted, gameWon, gamePaused, setupComplete;  
-
+boolean gameStarted= false;
+boolean gameWon = false;
+boolean setupComplete = false;  
+boolean gamePaused = false;
 int pauseCounter = 0;
-boolean pauseCounterStarted = false;
 
 // Player information
 String player1Name, player2Name;
 int playerTurn = 1;
+int player1Turns = 0;
+int player2Turns = 0;
 int player1Points = 0;
 int player2Points = 0;
 
@@ -22,7 +25,6 @@ Card clickedCard;
 Card clickedCard1;
 Card clickedCard2;
 boolean card1 = false;
-boolean card2 = false;
 int clickCount=0;
 
 // Dimensions of cards: we need the Cards to have a fixed dimension because of the size of the pictures
