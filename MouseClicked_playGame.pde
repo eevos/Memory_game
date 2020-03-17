@@ -6,12 +6,16 @@ void playGame(Card clickedCard) //<>//
       clickedCard1 = clickedCard;
       clickedCard1.setVisibility(true);
       clickCount++;
-    } else          
+    } else if (clickCount==1)         
     {
       clickedCard2 = clickedCard;   
       clickedCard2.setVisibility(true);
       clickCount--;
       gamePaused = true;
+    }
+    if (clickedCard2 == null)
+    {
+      //clickCount--;
     }
   }
 } 

@@ -15,8 +15,9 @@ int player2Points = 0;
 
 // Cards:  these variables are needed to create the Cards for the game
 Card[][] cards;
-int[] sets = {1, 12, 24, 32};      //int[] sets = {12, 18, 24, 32};  //(add 18 to test expanding the game)    
-
+Card tempCard;
+int[] sets = new int[11];  //int[] sets = {1, 12, 18, 24, 32};  //(add 1, 18 to test expanding the game)  
+//int[] sets = {1, 12, 18, 24, 32};
 int numberOfCardsX, numberOfCardsY;
 int numberOfSets = 0;
 

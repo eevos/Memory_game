@@ -1,14 +1,15 @@
 void setup()
 {
   textSize(32);
-  fullScreen();
-  //size(1600, 1200);
+  //fullScreen();
+  size(1600, 1200);             //toggle to test
   initializeSidebarFieldDimensions(); 
   resetParametresToRestartGame();
+  sets = createPossibleSets();
 }
 
 void draw()
-{
+{  
   createBackground();  
 
   if (!gameStarted && !gameWon && !setupComplete)
@@ -45,7 +46,7 @@ void draw()
     drawSidebar();
   }
 }
-Card tempCard;
+
 void mouseClicked()
 {
   if (!gameStarted && !gameWon && !setupComplete)
@@ -65,7 +66,7 @@ void mouseClicked()
       clickedCard = tempCard;
       playGame(clickedCard);
       tempCard = null;
-    }
+      }
   }
   if (gameStarted && gameWon && setupComplete) 
   {    

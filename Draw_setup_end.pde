@@ -20,7 +20,7 @@ void drawSetup()
   xPositionStartButton = width/2 - widthStartButton /2;
   yPositionStartButton =  yPositionNumberOfSets + 256;
 
-  drawText("How many sets of cards would you like to have? Click on the numbers to adjust, then click 'Start'", 200, 200);
+  drawText("How many sets of cards would you like to have? Click on the numbers to adjust, then click 'Start'", 200, yPositionNumberOfSets-250);
   drawNumberOfSets();
   drawButtonsFromArray(sets, sets.length, width/2, yPositionNumberOfSets + 64, 60, 60, "setGame");
   drawButton("Start", xPositionStartButton, yPositionStartButton, widthStartButton, heightStartButton, "startButton");
@@ -38,7 +38,7 @@ void drawText(String text, int x, int y)
 void drawNumberOfSets()
 {
   fill(176, 224, 230);
-  rect(width/2 - 200, height/2 - 150, 400, 300);
+  rect(width/2 - 500, height/2 - 150, 1000, 300);
   fill(0, 0, 100);
   textAlign(CENTER); 
   textSize(64);
