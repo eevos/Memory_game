@@ -28,9 +28,10 @@ void drawSetup()
 
 void drawText(String text, int x, int y)
 {
+  //textSize(32);
+
   fill(0, 0, 100);
   textAlign(LEFT, TOP);
-  textSize(32);
   text(text, x, y);
 }
 
@@ -42,6 +43,7 @@ void drawNumberOfSets()
   textAlign(CENTER); 
   textSize(64);
   text(numberOfSets, width/2, yPositionNumberOfSets );
+  textSize(32);
 }
 
 void drawButtonsFromArray(int[] sets, int numberOfButtons, int x, int y, 

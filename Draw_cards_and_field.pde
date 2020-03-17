@@ -3,7 +3,9 @@ void drawSidebar()
   fill(150);  
   rect(fieldWidth, 0, sidebarWidth, sidebarHeight);    //draw to test field with dimensions of sideBar
 
-  String[] text = {"Player Turn: " + str(playerTurn), 
+  String[] text = {
+    "Player Turn: " + str(playerTurn), 
+    " ",
     "Score player 1 : "  + str(player1Points), 
     "Player 1 turns: "  + player1Turns, 
     "Score player 2 : " + str(player2Points), 
@@ -12,7 +14,14 @@ void drawSidebar()
     "Game Won: "+ str(gameWon)};                        //, "cardId: "+clickedCard};
   for (int i = 0; i < text.length; i++)
   {
-    drawText(text[i], fieldWidth, i*30);
+    if (i == 0){
+      textSize(40);
+    }
+    else
+    {
+      textSize(32);
+    }
+    drawText(text[i], fieldWidth, spaceBetweenText + i*spaceBetweenText);
   }
 }
 
@@ -136,17 +145,10 @@ void drawField()
       img = thisCard.getImage();
       if (thisCard.getVisibility() == true)              //To see field drawn with images visible, toggle:   !cards[x][y].getVisibility()
       {
-        // Issue: clickedCard2 doesn't get to this point.
         image(img, thisCard.getX(), thisCard.getY());
         //println("cards[" + x + "][ " + y + "].getVisibility() = " + cards[x][y].getVisibility());
         //println("cards[" + x + "][ " + y + "].getDiscovered() = " + cards[x][y].getDiscovered());
       } 
-      //if (thisCard.getDiscovered() == true)
-      //{
-      //image(img, thisCard.getX(), thisCard.getY());
-      //println("cards[" + x + "][ " + y + "].getVisibility() = " + cards[x][y].getVisibility());
-      //println("cards[" + x + "][ " + y + "].getDiscovered() = " + cards[x][y].getDiscovered());
-      //}
       if (!thisCard.getVisibility() && !thisCard.getDiscovered())
       {
         fill(100);

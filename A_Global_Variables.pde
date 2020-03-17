@@ -39,7 +39,8 @@ int borderX, borderY;
 // Dimensions of Sidebar:  
 int sidebarX, sidebarY;
 int sidebarWidth, sidebarHeight;
-
+int spaceBetweenText = 50;
+ 
 //Dimensions of the Buttons:
 int xPositionStartButton, yPositionStartButton;      // Deze variabelen moeten globaal zijn omdat ze in draw() en mouseClicked() worden gebruikt
 int widthStartButton, heightStartButton;

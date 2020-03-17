@@ -1,5 +1,6 @@
 void setup()
 {
+  textSize(32);
   fullScreen();
   //size(1600, 1200);
   initializeSidebarFieldDimensions(); 
