@@ -1,26 +1,19 @@
 void playGame(Card clickedCard) //<>//
 {
-  if (clickCount==0)
-  {
-    clickedCard1 = clickedCard;
-    clickedCard1.setVisibility(true);
-    clickCount++;
-  } else          
-  {
-    clickedCard2 = clickedCard;   
-    clickedCard2.setVisibility(true);
-    clickCount--;
-    gamePaused = true;
+  if (clickedCard.getDiscovered() == false) {
+    if (clickCount==0)
+    {
+      clickedCard1 = clickedCard;
+      clickedCard1.setVisibility(true);
+      clickCount++;
+    } else          
+    {
+      clickedCard2 = clickedCard;   
+      clickedCard2.setVisibility(true);
+      clickCount--;
+      gamePaused = true;
+    }
   }
-//checkIfGameWon();
-  //if (checkIfGameWon())
-  //{
-  //  println("game has been won");
-  //  //reset variables to go to endGame()
-  //  setupComplete = true;    
-  //  gameStarted = true;
-  //  gameWon = true;
-  //}
 } 
 void pauseGame(int seconds)
 {
@@ -69,12 +62,12 @@ void loseTurn()
 
 void checkIfGameWon()
 {
-    int totalPoints = (player1Points + player2Points); 
-     if (((player1Points + player2Points)*2 >= numberOfCardsX*numberOfCardsY))  {
+  int totalPoints = (player1Points + player2Points); 
+  if (((player1Points + player2Points)*2 >= numberOfCardsX*numberOfCardsY)) {
     println("from checkIfGameWon(): game has been won ");
     setupComplete = true;    
     gameStarted = true;
-    gameWon = true;      
+    gameWon = true;
   }
 }
 void resetCards(String winOrLose)

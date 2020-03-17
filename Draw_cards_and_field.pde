@@ -5,9 +5,9 @@ void drawSidebar()
 
   String[] text = {"Player Turn: " + str(playerTurn), 
     "Score player 1 : "  + str(player1Points), 
-    "Player 1 turns: "  + player1Turns,
-    "Score player 2 : " + str(player2Points),
-    "Player 2 turns: "  + player2Turns,
+    "Player 1 turns: "  + player1Turns, 
+    "Score player 2 : " + str(player2Points), 
+    "Player 2 turns: "  + player2Turns, 
     "Game Paused : " + str(gamePaused), 
     "Game Won: "+ str(gameWon)};                        //, "cardId: "+clickedCard};
   for (int i = 0; i < text.length; i++)
@@ -108,19 +108,20 @@ void checkTurn()
 {
   if (gamePaused == false && clickedCard1!=null && clickedCard2!=null)
   {
-    if (equalCards(clickedCard1, clickedCard2))
+    if (equalCards(clickedCard1, clickedCard2) && (clickedCard1.getId() != clickedCard2.getId()))
     { 
       winTurn();
+      println(clickedCard1.getId(), clickedCard2.getId());
       clickedCard1.setDiscovered(true);  
       clickedCard2.setDiscovered(true);
     } else if (!equalCards(clickedCard1, clickedCard2))
     {
       loseTurn();
     }
-    clickedCard1.setVisibility(false); 
-    clickedCard2.setVisibility(false);
-    clickedCard1 = null;
-    clickedCard2 = null;
+      clickedCard1.setVisibility(false); 
+      clickedCard2.setVisibility(false);
+      clickedCard1 = null;
+      clickedCard2 = null;
   }
 }
 

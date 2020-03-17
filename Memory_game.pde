@@ -44,7 +44,7 @@ void draw()
     drawSidebar();
   }
 }
-
+Card tempCard;
 void mouseClicked()
 {
   if (!gameStarted && !gameWon && !setupComplete)
@@ -58,8 +58,13 @@ void mouseClicked()
   }
   if (gameStarted && !gameWon && setupComplete)   
   {
-    clickedCard = identifyCard();      //println(clickedCard.getId());    //println(clickedCard.getImageNo());
-    playGame(clickedCard);
+    tempCard = identifyCard();      //println(clickedCard.getId());    //println(clickedCard.getImageNo());
+    if (tempCard != null)
+    {
+      clickedCard = tempCard;
+      playGame(clickedCard);
+      tempCard = null;
+    }
   }
   if (gameStarted && gameWon && setupComplete) 
   {    
