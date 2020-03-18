@@ -61,12 +61,20 @@ void mouseClicked()
   if (gameStarted && !gameWon && setupComplete)   
   {
     tempCard = identifyCard();      //println(clickedCard.getId());    //println(clickedCard.getImageNo());
-    if (tempCard != null)
+    if (tempCard == null && gamePaused == false)
+    {
+      println("tempCard is null, no card clicked");
+    }
+    if (tempCard != null && gamePaused == false && tempCard != clickedCard && tempCard.getDiscovered() == false)  //&& tempCard != clickedCard
     {
       clickedCard = tempCard;
       playGame(clickedCard);
+      println("clickedCard.getId = " + clickedCard.getId());
+      println("tempCard.getId = " + tempCard.getId());
       tempCard = null;
-      }
+    }
+    
+
   }
   if (gameStarted && gameWon && setupComplete) 
   {    

@@ -1,24 +1,24 @@
-void playGame(Card clickedCard) //<>//
+void playGame(Card clickedCard) //<>// //<>//
 {
   if (clickedCard.getDiscovered() == false) {
     if (clickCount==0)
     {
+      println(clickCount + " = clickCount");
       clickedCard1 = clickedCard;
       clickedCard1.setVisibility(true);
-      clickCount++;
-    } else if (clickCount==1)         
+      clickCount = 1;
+      clickedCard = null;
+    } else if (clickCount == 1 && clickedCard != clickedCard1)       
     {
+      println(clickCount + " = clickCount");
       clickedCard2 = clickedCard;   
       clickedCard2.setVisibility(true);
-      clickCount--;
+      clickCount = 0;
       gamePaused = true;
-    }
-    if (clickedCard2 == null)
-    {
-      //clickCount--;
     }
   }
 } 
+
 void pauseGame(int seconds)
 {
   int frames = 50 * seconds;
