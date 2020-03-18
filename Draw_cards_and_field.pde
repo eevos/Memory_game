@@ -124,7 +124,9 @@ void drawSidebar()
     "——",
     "Stats:",
     "Game Paused : " + str(gamePaused), 
-    "Game Won: "+ str(gameWon)};                        //, "cardId: "+clickedCard};
+    "Game Won: "+ str(gameWon)  
+    };
+
   for (int i = 0; i < text.length; i++)
   {
     if (i == 0) {
