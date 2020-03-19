@@ -49,11 +49,25 @@ class Card {
   }
 
   //Set information that is changeable
- 
+
   void setVisibility(boolean tempVisibility) { 
     visibility = tempVisibility;
   }    //setVisible is a reserved function, so changed to setVisibility
   void setDiscovered(boolean tempDiscovered) { 
     discovered = tempDiscovered;
+  }
+  void setImage(PImage tempImage)
+  {
+    image = tempImage;
+  }
+  void setImageNo(int tempImageNo)
+  {
+    imageNo = tempImageNo;
+  }
+  void setImageFromImageNo(int tempImageNo)
+  {
+    PImage img;
+    img = loadImage(+tempImageNo+".png");
+    setImage(img);
   }
 }

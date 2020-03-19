@@ -1,3 +1,30 @@
+void shuffleImages() {
+  int[] cardImageNos = new int[numberOfCardsX * numberOfCardsY];  
+  
+  //extract the imagenumbers and store them in array of cardImageNos
+  for (int i = 0; i < numberOfCardsX * numberOfCardsY; i++)
+  {
+    cardImageNos[i] = findCardById(i).getImageNo();      //println(thisCard.getImageNo());  //check if all the sets have equal numbers before shuffling
+  }
+  
+  // shuffle the array of cardImageNos[]
+  for (int i = 0; i < cardImageNos.length; i++)
+  {
+    int shuffledIndex = int (random(0, i+1));
+    int dummy = cardImageNos[i];
+    cardImageNos[i] = cardImageNos[shuffledIndex];
+    cardImageNos[shuffledIndex] = dummy;
+  }
+  
+  //then setImageFromImageNo(cardImageNos[i]) 
+  for (int i = 0; i < cardImageNos.length; i++) 
+  {
+    findCardById(i).setImageFromImageNo(cardImageNos[i]);            //println(findCardById(i).getId(), " gets imageNo : " , cardImageNos[i]);
+    findCardById(i).setImageNo(cardImageNos[i]);
+  }
+}
+
+
 void initializeSidebarFieldDimensions()
 {
   sidebarWidth = width/4;

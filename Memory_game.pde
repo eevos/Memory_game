@@ -21,6 +21,8 @@ void draw()
     if (cards == null) 
     {
       cards = createField(numberOfSets);
+      shuffleImages(); 
+      println("Everyday Im shuffling");
       centerCardsInField();
     } else 
     {

@@ -32,7 +32,7 @@ void pauseGame(int seconds)
 
 boolean equalCards(Card clickedCard1, Card clickedCard2)
 {
-  if ((clickedCard1.getImageNo()==clickedCard2.getImageNo()))
+  if ((clickedCard1.getImageNo() == clickedCard2.getImageNo()))
   {
     return true;
   } else 
