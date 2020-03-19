@@ -86,8 +86,8 @@ void drawEndGame()
   String[] text = {"Player " + winner + " has won in " + str(playerTurns) + " turns!", 
     "Score player 1 : "  + str(player1Points), 
     "Score player 2 : " + str(player2Points), 
-    "Click mouse to restart game", 
-    "Extra info"};
+    "Click mouse to restart game"
+    };
   for (int i = 0; i < text.length; i++)
   {
     drawText(text[i], 500, 200 + i * 30);

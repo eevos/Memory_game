@@ -57,26 +57,9 @@ Card identifyCard()
       }
       if (!isMouseOverButton(cards[x][y].getX(), cards[x][y].getY(), 100, 100))
       {
-        //println("no card clicked");          // Issue
+        //println("no card clicked");
       }
     }
   }
   return thisCardIsClicked;
-}
-
-//Test
-Card foundCard;
-Card findCardById(int id)
-{
-  for (int x = 0; x<numberOfCardsX; x++)
-  {
-    for (int y = 0; y<numberOfCardsY; y++)
-    {
-      if (cards[x][y].getId() == id)
-      {
-        foundCard= cards[x][y];
-      }
-    }
-  }
-  return foundCard;
 }

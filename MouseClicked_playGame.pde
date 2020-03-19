@@ -1,16 +1,16 @@
-void playGame(Card clickedCard) //<>// //<>//
+void playGame(Card clickedCard) //<>// //<>// //<>//
 {
   if (clickedCard.getDiscovered() == false) {
     if (clickCount==0)
     {
-      println(clickCount + " = clickCount");
+      //println(clickCount + " = clickCount");
       clickedCard1 = clickedCard;
       clickedCard1.setVisibility(true);
       clickCount = 1;
       clickedCard = null;
     } else if (clickCount == 1 && clickedCard != clickedCard1)       
     {
-      println(clickCount + " = clickCount");
+      //println(clickCount + " = clickCount");
       clickedCard2 = clickedCard;   
       clickedCard2.setVisibility(true);
       clickCount = 0;
@@ -66,8 +66,8 @@ void loseTurn()
 
 void checkIfGameWon()
 {
-  int totalPoints = (player1Points + player2Points); 
-  if (((player1Points + player2Points)*2 >= numberOfCardsX*numberOfCardsY)) {
+  int totalPoints = (player1Points + player2Points) * 2; 
+  if ((totalPoints >= numberOfCardsX*numberOfCardsY)) {
     println("from checkIfGameWon(): game has been won ");
     setupComplete = true;    
     gameStarted = true;
@@ -88,15 +88,4 @@ void resetCards(String winOrLose)
   clickedCard1=null;  
   clickedCard2=null;
   clickedCard=null;
-}
-
-//pauseGame with milliseconds
-void pauseGameMillis(int tempDuration)
-{
-  int startMillis = millis();
-  while (millis() < startMillis + tempDuration)
-  {
-    //do nothing for tempDuration
-  }
-  gamePaused = false;
 }
