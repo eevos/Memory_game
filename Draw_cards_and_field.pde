@@ -1,11 +1,11 @@
 int[] createPossibleSets()
 {     
-  int i=12;
+  int possibleSet = 12;
   int[] tempSets = new int[11];
   for (int j = 0; j<11; j++)
   {
-    tempSets[j] = i;
-    i+=2;
+    tempSets[j] = possibleSet;
+    possibleSet += 2;
   }
   //println(sets2);
   return tempSets;

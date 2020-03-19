@@ -21,6 +21,8 @@ void draw()
     if (cards == null) 
     {
       cards = createField(numberOfSets);
+      shuffleImages(); 
+      println("Everyday Im shuffling");
       centerCardsInField();
     } else 
     {
@@ -63,18 +65,16 @@ void mouseClicked()
     tempCard = identifyCard();      //println(clickedCard.getId());    //println(clickedCard.getImageNo());
     if (tempCard == null && gamePaused == false)
     {
-      println("tempCard is null, no card clicked");
+      //println("tempCard is null, no card clicked");
     }
     if (tempCard != null && gamePaused == false && tempCard != clickedCard && tempCard.getDiscovered() == false)  //&& tempCard != clickedCard
     {
       clickedCard = tempCard;
       playGame(clickedCard);
-      println("clickedCard.getId = " + clickedCard.getId());
-      println("tempCard.getId = " + tempCard.getId());
+      //println("clickedCard.getId = " + clickedCard.getId());
+      //println("tempCard.getId = " + tempCard.getId());
       tempCard = null;
     }
-    
-
   }
   if (gameStarted && gameWon && setupComplete) 
   {    
