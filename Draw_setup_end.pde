@@ -23,6 +23,23 @@ void shuffleImages() {
     findCardById(i).setImageNo(cardImageNos[i]);
   }
 }
+Card findCardById(int id)
+{
+  Card foundCard = null;
+  for (int x = 0; x<numberOfCardsX; x++)
+  {
+    for (int y = 0; y<numberOfCardsY; y++)
+    {
+      if (cards[x][y].getId() == id)
+      {
+        foundCard= cards[x][y];
+      }
+    }
+  }
+  return foundCard;
+}
+
+
 
 void initializeSidebarFieldDimensions()
 {

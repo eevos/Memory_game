@@ -1,4 +1,4 @@
-void playGame(Card clickedCard) //<>// //<>// //<>//
+void makeVisible(Card clickedCard) //<>// //<>// //<>// //<>//
 {
   if (clickedCard.getDiscovered() == false) {
     if (clickCount==0)

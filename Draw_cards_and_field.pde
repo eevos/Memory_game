@@ -1,3 +1,11 @@
+void playGame()
+{
+  checkIfGameWon();
+  drawField();      
+  checkTurn();
+  drawSidebar();
+}
+
 int[] createPossibleSets()
 {     
   int possibleSet = 12;
@@ -15,7 +23,7 @@ Card[][] createField(int numberOfSets)
 {
   partitionCardsXandY(numberOfSets);
   //println("numberOfCards: X = " + numberOfCardsX + " Y = " + numberOfCardsY);
-    return makeArrayOfCards(numberOfCardsX, numberOfCardsY);
+  return makeArrayOfCards(numberOfCardsX, numberOfCardsY);
 }
 
 Card[][] makeArrayOfCards(int numberOfCardsX, int numberOfCardsY)
@@ -32,7 +40,7 @@ Card[][] makeArrayOfCards(int numberOfCardsX, int numberOfCardsY)
       PImage img;
       img = loadImage(+imagenumber+".png");
       int imageNo=imagenumber;
-      
+
       arrayOfCards[x][y] = new Card(id, x*cardWidth, y*cardHeight, cardWidth, cardHeight, img, imageNo);  
       //println("x = "+ x + " and y = " + y);  //println("imagenumber = " + imagenumber + " id = " + id
 
@@ -63,6 +71,30 @@ void centerCardsInField()
     }
   }
 }
+
+void drawField()
+{
+  PImage img;
+  for (int x = 0; x < numberOfCardsX; x++)
+  {
+    for (int y = 0; y < numberOfCardsY; y++)
+    {
+      Card thisCard = cards[x][y];
+      img = thisCard.getImage();
+      if (thisCard.getVisibility() == true)              //To see field drawn with images visible, toggle:  == false
+      {
+        image(img, thisCard.getX(), thisCard.getY());
+        //println("cards[" + x + "][ " + y + "].getVisibility() = " + cards[x][y].getVisibility());//println("cards[" + x + "][ " + y + "].getDiscovered() = " + cards[x][y].getDiscovered());
+      } 
+      if (!thisCard.getVisibility() && !thisCard.getDiscovered())
+      {
+        fill(100);
+        rect(thisCard.getX(), thisCard.getY(), cardWidth, cardHeight);
+      }
+    }
+  }
+}
+
 void checkIfGameWon()
 {
   if (clickedCard != null)
@@ -97,28 +129,6 @@ void checkTurn()
   }
 }
 
-void drawField()
-{
-  PImage img;
-  for (int x = 0; x < numberOfCardsX; x++)
-  {
-    for (int y = 0; y < numberOfCardsY; y++)
-    {
-      Card thisCard = cards[x][y];
-      img = thisCard.getImage();
-      if (thisCard.getVisibility() == true)              //To see field drawn with images visible, toggle:  == false
-      {
-        image(img, thisCard.getX(), thisCard.getY());
-        //println("cards[" + x + "][ " + y + "].getVisibility() = " + cards[x][y].getVisibility());//println("cards[" + x + "][ " + y + "].getDiscovered() = " + cards[x][y].getDiscovered());
-      } 
-      if (!thisCard.getVisibility() && !thisCard.getDiscovered())
-      {
-        fill(100);
-        rect(thisCard.getX(), thisCard.getY(), cardWidth, cardHeight);
-      }
-    }
-  }
-}
 
 void drawSidebar()
 {

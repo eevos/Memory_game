@@ -39,15 +39,12 @@ void draw()
   }
   if (gameStarted && !gameWon && setupComplete)
   {
-    checkIfGameWon();
-    drawField();      
-    checkTurn();
-    drawSidebar();
+    playGame();
   }
   if (gameStarted && gameWon &&  setupComplete)
   {
     drawEndGame();
-    drawSidebar();
+      drawSidebar();
   }
 }
 
@@ -68,7 +65,7 @@ void mouseClicked()
     if (tempCard != null && tempCard != clickedCard && tempCard.getDiscovered() == false)
     {
       clickedCard = tempCard;
-      playGame(clickedCard);
+      makeVisible(clickedCard);
       tempCard = null;
     }
   }
