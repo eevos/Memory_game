@@ -64,16 +64,6 @@ void loseTurn()
   }
 }
 
-void checkIfGameWon()
-{
-  int totalPoints = (player1Points + player2Points) * 2; 
-  if ((totalPoints >= numberOfCardsX*numberOfCardsY)) {
-    println("from checkIfGameWon(): game has been won ");
-    setupComplete = true;    
-    gameStarted = true;
-    gameWon = true;
-  }
-}
 void resetCards(String winOrLose)
 {
   if (winOrLose=="Lose")

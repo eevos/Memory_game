@@ -18,13 +18,17 @@ boolean isMouseOverButton(int x, int y, int w, int h) {
 }
 
 void changeButtonColorIfMouseOver(int xStartPoint, int tempyPosButtons, int buttonWidth, int buttonHeight) {
-  if (isMouseOverButton(xStartPoint, tempyPosButtons, buttonWidth, buttonHeight)) 
+  if (!isMouseOverButton(xStartPoint, tempyPosButtons, buttonWidth, buttonHeight)) 
   {
-    fill(100, 200, 100);
-  } else 
-  {
+    strokeWeight(1);
     fill(176, 224, 230);
   }
+  else 
+  {
+    //strokeWeight(2);
+    fill(60, 100, 150);
+  }
+
 }
 
 void doActionArray(String buttonId, int index) {
@@ -33,6 +37,10 @@ void doActionArray(String buttonId, int index) {
   {
     numberOfSets = sets[index];
     //println("doActionArray : NumberOfSets = " + sets[index]);
+  }
+  if (buttonId=="singleplayer")
+  {
+    singlePlayer = modes[index];
   }
 }
 void doAction(String buttonId)

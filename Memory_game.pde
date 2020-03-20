@@ -1,8 +1,8 @@
 void setup()
 {
   textSize(32);
-  //fullScreen();
-  size(1600, 1200);             //toggle to test
+  fullScreen();
+  //size(1200, 800);             //toggle to test
   initializeSidebarFieldDimensions(); 
   resetParametresToRestartGame();
   sets = createPossibleSets();
@@ -18,13 +18,15 @@ void draw()
   }
   if (!gameStarted && !gameWon && setupComplete)
   {
-    if (cards == null) 
+    if (cardsAreSet == false)                                         
     {
+      cardsAreSet = true;
       cards = createField(numberOfSets);
       shuffleImages(); 
-      println("Everyday Im shuffling");
       centerCardsInField();
-    } else 
+      //println("cardsAreSet = ", cardsAreSet);
+    } 
+    if (cardsAreSet)
     {
       setupComplete = true;
       gameStarted = true;
@@ -38,7 +40,7 @@ void draw()
   if (gameStarted && !gameWon && setupComplete)
   {
     checkIfGameWon();
-    drawField();
+    drawField();      
     checkTurn();
     drawSidebar();
   }
@@ -55,29 +57,24 @@ void mouseClicked()
   {
     if (isButtonClicked(xPositionStartButton, yPositionStartButton, widthStartButton, heightStartButton) && (numberOfSets > 0))
     {
-      setupComplete = true;    //println("startButton is clicked, setupComplete = true");
+      setupComplete = true;    //println("mouseClicked: setupComplete = true");
       gameStarted = false;
       gameWon = false;
     }
   }
-  if (gameStarted && !gameWon && setupComplete)   
+  if (gameStarted && !gameWon && setupComplete && !gamePaused)   
   {
-    tempCard = identifyCard();      //println(clickedCard.getId());    //println(clickedCard.getImageNo());
-    if (tempCard == null && gamePaused == false)
-    {
-      //println("tempCard is null, no card clicked");
-    }
-    if (tempCard != null && gamePaused == false && tempCard != clickedCard && tempCard.getDiscovered() == false)  //&& tempCard != clickedCard
+    tempCard = identifyCard();
+    if (tempCard != null && tempCard != clickedCard && tempCard.getDiscovered() == false)
     {
       clickedCard = tempCard;
       playGame(clickedCard);
-      //println("clickedCard.getId = " + clickedCard.getId());
-      //println("tempCard.getId = " + tempCard.getId());
       tempCard = null;
     }
   }
   if (gameStarted && gameWon && setupComplete) 
   {    
     resetParametresToRestartGame();
+    //println("mouseClicked resetParametresToRestartGame()");
   }
 }

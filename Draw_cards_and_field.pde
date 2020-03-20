@@ -7,7 +7,7 @@ int[] createPossibleSets()
     tempSets[j] = possibleSet;
     possibleSet += 2;
   }
-  //println(sets2);
+  //println(tempSets);
   return tempSets;
 }
 
@@ -15,7 +15,7 @@ Card[][] createField(int numberOfSets)
 {
   partitionCardsXandY(numberOfSets);
   //println("numberOfCards: X = " + numberOfCardsX + " Y = " + numberOfCardsY);
-  return makeArrayOfCards(numberOfCardsX, numberOfCardsY);
+    return makeArrayOfCards(numberOfCardsX, numberOfCardsY);
 }
 
 Card[][] makeArrayOfCards(int numberOfCardsX, int numberOfCardsY)
@@ -32,8 +32,9 @@ Card[][] makeArrayOfCards(int numberOfCardsX, int numberOfCardsY)
       PImage img;
       img = loadImage(+imagenumber+".png");
       int imageNo=imagenumber;
-
-      arrayOfCards[x][y] = new Card(id, x*cardWidth, y*cardHeight, cardWidth, cardHeight, img, imageNo);  //println("x = "+ x + " and y = " + y);  //println("imagenumber = " + imagenumber + " id = " + id
+      
+      arrayOfCards[x][y] = new Card(id, x*cardWidth, y*cardHeight, cardWidth, cardHeight, img, imageNo);  
+      //println("x = "+ x + " and y = " + y);  //println("imagenumber = " + imagenumber + " id = " + id
 
       //increase id for every Card, but only increase imagenumber when the same image is also set for the second Card
       id++;
@@ -62,7 +63,19 @@ void centerCardsInField()
     }
   }
 }
-
+void checkIfGameWon()
+{
+  if (clickedCard != null)
+  {
+    int totalPoints = (player1Points + player2Points) * 2; 
+    if ((totalPoints >= numberOfCardsX*numberOfCardsY)) {
+      //println("from checkIfGameWon(): game has been won ");
+      setupComplete = true;    
+      gameStarted = true;
+      gameWon = true;
+    }
+  }
+}
 void checkTurn()
 {
   if (gamePaused == false && clickedCard1!=null && clickedCard2!=null)
@@ -70,7 +83,7 @@ void checkTurn()
     if (equalCards(clickedCard1, clickedCard2) && (clickedCard1.getId() != clickedCard2.getId()))
     { 
       winTurn();
-      println(clickedCard1.getId(), clickedCard2.getId());
+      //println(clickedCard1.getId(), clickedCard2.getId());
       clickedCard1.setDiscovered(true);  
       clickedCard2.setDiscovered(true);
     } else if (!equalCards(clickedCard1, clickedCard2))
@@ -93,11 +106,10 @@ void drawField()
     {
       Card thisCard = cards[x][y];
       img = thisCard.getImage();
-      if (thisCard.getVisibility() == true)              //To see field drawn with images visible, toggle:   !cards[x][y].getVisibility()
+      if (thisCard.getVisibility() == true)              //To see field drawn with images visible, toggle:  == false
       {
         image(img, thisCard.getX(), thisCard.getY());
-        //println("cards[" + x + "][ " + y + "].getVisibility() = " + cards[x][y].getVisibility());
-        //println("cards[" + x + "][ " + y + "].getDiscovered() = " + cards[x][y].getDiscovered());
+        //println("cards[" + x + "][ " + y + "].getVisibility() = " + cards[x][y].getVisibility());//println("cards[" + x + "][ " + y + "].getDiscovered() = " + cards[x][y].getDiscovered());
       } 
       if (!thisCard.getVisibility() && !thisCard.getDiscovered())
       {
@@ -113,29 +125,63 @@ void drawSidebar()
   fill(150);  
   rect(fieldWidth, 0, sidebarWidth, sidebarHeight);    //draw to test field with dimensions of sideBar
 
-  String[] text = {
-    "Player Turn: " + str(playerTurn), 
-    "—————————", 
-    "Score player 1 : "  + str(player1Points), 
-    "Player 1 turns: "  + player1Turns, 
-    "——",
-    "Score player 2 : " + str(player2Points), 
-    "Player 2 turns: "  + player2Turns,
-    "——",
-    "Stats:",
-    "Game Paused : " + str(gamePaused), 
-    "Game Won: "+ str(gameWon)  
+  if (singlePlayer == 2)
+  {
+    String[] text = {
+      "Player Turn: " + str(playerTurn), 
+      "—————————", 
+      "Player 1 score : "  + str(player1Points), 
+      "Player 1 turns: "  + player1Turns, 
+      "——", 
+      "Player 2 score : " + str(player2Points), 
+      "Player 2 turns: "  + player2Turns
+      //,"——", 
+      //"Stats:", 
+      //"Game Paused : " + str(gamePaused), 
+      //"Game Won: "+ str(gameWon)  
+    };
+    for (int i = 0; i < text.length; i++)
+    {
+      if (i == 0) {
+        textSize(40);
+      } else
+      {
+        textSize(32);
+      }
+      drawText(text[i], fieldWidth + spaceBetween, spaceBetweenText + i*spaceBetweenText);
+    }
+  } else
+  {
+    String[] text = {
+      "Single Player", 
+      "—————————", 
+      "Player 1 score : "  + str(player1Points + player2Points), 
+      "Player 1 turns : "  + (player1Turns + player2Turns)
+      //, "—————————"
+      //,"Stats:"
+      //,"Game Paused : " + str(gamePaused), 
+      //"Game Won: "+ str(gameWon)
     };
 
-  for (int i = 0; i < text.length; i++)
-  {
-    if (i == 0) {
-      textSize(40);
-    } else
+    for (int i = 0; i < text.length; i++)
     {
-      textSize(32);
+      if (i == 0) {
+        textSize(40);
+      } else
+      {
+        textSize(32);
+      }
+      drawText(text[i], fieldWidth + spaceBetween, spaceBetweenText + i*spaceBetweenText);
     }
-    drawText(text[i], fieldWidth, spaceBetweenText + i*spaceBetweenText);
+  };
+
+  if (clickedCard != null)
+  {
+    if (clickedCard.getImageNo()==1)
+    {
+      fill(255);
+      drawText("you found a turd", 200, 100);
+    }
   }
 }
 

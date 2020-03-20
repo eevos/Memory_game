@@ -12,14 +12,17 @@ int player1Turns = 0;
 int player2Turns = 0;
 int player1Points = 0;
 int player2Points = 0;
+int singlePlayer = 2;
+int[] modes = { 1, 2 };
 
 // Cards:  these variables are needed to create the Cards for the game
 Card[][] cards;
 Card tempCard;
-int[] sets = new int[11];  //int[] sets = {1, 12, 18, 24, 32};  //(add 1, 18 to test expanding the game)  
-//int[] sets = {1, 12, 18, 24, 32};
+int[] sets = new int[11];    
+//int[] sets = {1, 12, 18, 24, 32};      //toggle for testing purposes
 int numberOfCardsX, numberOfCardsY;
 int numberOfSets = 0;
+boolean cardsAreSet = false;
 
 //variables to use in mouseClick() when playGame()
 Card clickedCard;
