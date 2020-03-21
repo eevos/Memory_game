@@ -1,45 +1,3 @@
-void shuffleImages() {
-  int[] cardImageNos = new int[numberOfCardsX * numberOfCardsY];  
-
-  //extract the imagenumbers and store them in array of cardImageNos
-  for (int i = 0; i < cardImageNos.length; i++)
-  {
-    cardImageNos[i] = findCardById(i).getImageNo();      //println(thisCard.getImageNo());  //check if all the sets have equal numbers before shuffling
-  }
-
-  // shuffle the array of cardImageNos[]
-  for (int i = 0; i < cardImageNos.length; i++)
-  {
-    int shuffledIndex = int (random(0, i+1));
-    int dummy = cardImageNos[i];
-    cardImageNos[i] = cardImageNos[shuffledIndex];
-    cardImageNos[shuffledIndex] = dummy;
-  }
-
-  //then setImageFromImageNo(cardImageNos[i]) 
-  for (int i = 0; i < cardImageNos.length; i++) 
-  {
-    findCardById(i).setImageFromImageNo(cardImageNos[i]);            //println(findCardById(i).getId(), " gets imageNo : " , cardImageNos[i]);
-    findCardById(i).setImageNo(cardImageNos[i]);
-  }
-}
-Card findCardById(int id)
-{
-  Card foundCard = null;
-  for (int x = 0; x<numberOfCardsX; x++)
-  {
-    for (int y = 0; y<numberOfCardsY; y++)
-    {
-      if (cards[x][y].getId() == id)
-      {
-        foundCard= cards[x][y];
-      }
-    }
-  }
-  return foundCard;
-}
-
-
 
 void initializeSidebarFieldDimensions()
 {
@@ -82,7 +40,7 @@ void drawText(String text, int x, int y)
 void drawNumberOfSets()
 {
   fill(176, 224, 230);
-  rect(width/2 - 500, height/2 - 150, 1000, 300);
+  rect(width/2 - 550, height/2 - 150, 1100, 300);
   fill(0, 0, 100);
   textAlign(CENTER); 
   textSize(32);

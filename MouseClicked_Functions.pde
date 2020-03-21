@@ -22,17 +22,15 @@ void changeButtonColorIfMouseOver(int xStartPoint, int tempyPosButtons, int butt
   {
     strokeWeight(1);
     fill(176, 224, 230);
-  }
-  else 
+  } else 
   {
     //strokeWeight(2);
     fill(60, 100, 150);
   }
-
 }
 
 void doActionArray(String buttonId, int index) {
- 
+
   if (buttonId=="setGame")
   {
     numberOfSets = sets[index];
@@ -51,7 +49,6 @@ void doAction(String buttonId)
   }
 }
 
-  Card thisCardIsClicked;
 
 Card identifyCard()
 {                                          //println("identifyCard() is running");
@@ -70,4 +67,20 @@ Card identifyCard()
     }
   }
   return thisCardIsClicked;
+}
+
+boolean isMouseOverCard(Card card)
+{
+  if (mouseX > card.getX() 
+    && mouseY > card.getY() 
+    && mouseX < card.getX() + cardWidth 
+    && mouseY < card.getY() + cardHeight)
+  {
+    //println("mouse over card ");
+    return true;
+  } else
+  {
+    //println("mouse NOT over card ");
+    return false;
+  }
 }

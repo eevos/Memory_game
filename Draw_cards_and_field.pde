@@ -3,19 +3,21 @@ void playGame()
   checkIfGameWon();
   drawField();      
   checkTurn();
-  drawSidebar();
 }
 
 int[] createPossibleSets()
 {     
   int possibleSet = 12;
-  int[] tempSets = new int[11];
-  for (int j = 0; j<11; j++)
+  int[] tempSets = new int[12];
+  for (int j = 0; j< tempSets.length; j++)
   {
+    if (possibleSet == 34)
+    {
+      possibleSet = 40;
+    }
     tempSets[j] = possibleSet;
     possibleSet += 2;
   }
-  //println(tempSets);
   return tempSets;
 }
 
@@ -53,6 +55,46 @@ Card[][] makeArrayOfCards(int numberOfCardsX, int numberOfCardsY)
     }
   }
   return arrayOfCards;
+}
+void shuffleImages() {
+  int[] cardImageNos = new int[numberOfCardsX * numberOfCardsY];  
+
+  //extract the imagenumbers and store them in array of cardImageNos
+  for (int i = 0; i < cardImageNos.length; i++)
+  {
+    cardImageNos[i] = findCardById(i).getImageNo();      //println(thisCard.getImageNo());  //check if all the sets have equal numbers before shuffling
+  }
+
+  // shuffle the array of cardImageNos[]
+  for (int i = 0; i < cardImageNos.length; i++)
+  {
+    int shuffledIndex = int (random(0, i+1));
+    int dummy = cardImageNos[i];
+    cardImageNos[i] = cardImageNos[shuffledIndex];
+    cardImageNos[shuffledIndex] = dummy;                //println(dummy);
+  }
+
+  //then setImageFromImageNo(cardImageNos[i]) 
+  for (int i = 0; i < cardImageNos.length; i++) 
+  {
+    findCardById(i).setImageFromImageNo(cardImageNos[i]);            //println(findCardById(i).getId(), " gets imageNo : " , cardImageNos[i]);
+    findCardById(i).setImageNo(cardImageNos[i]);
+  }
+}
+Card findCardById(int id)
+{
+  Card foundCard = null;
+  for (int x = 0; x<numberOfCardsX; x++)
+  {
+    for (int y = 0; y<numberOfCardsY; y++)
+    {
+      if (cards[x][y].getId() == id)
+      {
+        foundCard= cards[x][y];
+      }
+    }
+  }
+  return foundCard;
 }
 
 void centerCardsInField()
@@ -128,7 +170,6 @@ void checkTurn()
     clickedCard2 = null;
   }
 }
-
 
 void drawSidebar()
 {
@@ -267,6 +308,12 @@ void partitionCardsXandY(int numberOfSets)
   case 32:
     {
       numberOfCardsX = 8;      
+      numberOfCardsY = 8;      
+      return;
+    }
+  case 40:
+    {
+      numberOfCardsX = 10;      
       numberOfCardsY = 8;      
       return;
     }

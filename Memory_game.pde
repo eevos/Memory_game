@@ -1,5 +1,6 @@
 void setup()
 {
+  println("Production of Ed&Ams");
   textSize(32);
   fullScreen();
   //size(1200, 800);             //toggle to test
@@ -40,11 +41,12 @@ void draw()
   if (gameStarted && !gameWon && setupComplete)
   {
     playGame();
+    drawSidebar();
   }
   if (gameStarted && gameWon &&  setupComplete)
   {
     drawEndGame();
-      drawSidebar();
+    drawSidebar();
   }
 }
 
@@ -62,7 +64,8 @@ void mouseClicked()
   if (gameStarted && !gameWon && setupComplete && !gamePaused)   
   {
     tempCard = identifyCard();
-    if (tempCard != null && tempCard != clickedCard && tempCard.getDiscovered() == false)
+    //isMouseOverCard(tempCard);
+    if (tempCard != null  && tempCard.getDiscovered() == false && isMouseOverCard(tempCard)) 
     {
       clickedCard = tempCard;
       makeVisible(clickedCard);

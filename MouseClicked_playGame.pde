@@ -67,7 +67,7 @@ void loseTurn()
 void resetCards(String winOrLose)
 {
   if (winOrLose=="Lose")
-  {  // do nothing special
+  {   
   } else if (winOrLose=="Win")
   {    
     clickedCard1.setDiscovered(true);  

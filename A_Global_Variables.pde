@@ -18,7 +18,7 @@ int[] modes = { 1, 2 };
 // Cards:  these variables are needed to create the Cards for the game
 Card[][] cards;
 Card tempCard;
-int[] sets = new int[11];    
+int[] sets = new int[12];    
 //int[] sets = {1, 12, 18, 24, 32};      //toggle for testing purposes
 int numberOfCardsX, numberOfCardsY;
 int numberOfSets = 0;
@@ -30,6 +30,7 @@ Card clickedCard1;
 Card clickedCard2;
 boolean card1 = false;
 int clickCount=0;
+Card thisCardIsClicked;
 
 // Dimensions of cards: we need the Cards to have a fixed dimension because of the size of the pictures
 int cardWidth = 100;
@@ -44,7 +45,7 @@ int borderX, borderY;
 int sidebarX, sidebarY;
 int sidebarWidth, sidebarHeight;
 int spaceBetweenText = 50;
- 
+
 //Dimensions of the Buttons:
 int xPositionStartButton, yPositionStartButton;      // Deze variabelen moeten globaal zijn omdat ze in draw() en mouseClicked() worden gebruikt
 int widthStartButton, heightStartButton;
